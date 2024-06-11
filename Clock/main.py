@@ -1,8 +1,6 @@
 import sqlite3
 import sys
-
 import os
-from pyshortcuts import make_shortcut
 
 from PyQt5 import uic, QtMultimedia, QtCore
 from PyQt5.QtCore import QTimer, QTime
@@ -497,31 +495,12 @@ class Window(QMainWindow):
             self.player.play()
 
 
-# функция для создания ярлыка на рабочем столе
-def create_shortcut():
-    # Определение пути к ярлыку
-    desktop = os.path.join(os.path.join(os.environ['USERPROFILE']), 'Desktop')
-    shortcut_path = os.path.join(desktop, 'MyAlarm.lnk')
-
-    # Проверка, существует ли уже ярлык
-    if not os.path.exists(shortcut_path):
-        # Создание ярлыка
-        make_shortcut(
-            script=os.path.abspath('main.exe'),
-            name='Smart Clock',
-            description='The smartest clock in the world',
-            icon='img/clock.ico'  # Укажите путь к иконке вашего приложения
-        )
-        # print('Создан')
-
-
 # Функция для отображения исключений
 def except_hook(cls, exception, traceback):
     sys.__excepthook__(cls, exception, traceback)
 
 
 if __name__ == '__main__':
-    create_shortcut()
     app = QApplication(sys.argv)
     form = Window()
     form.show()
