@@ -26,7 +26,8 @@
    <string>Многофункциональные часы</string>
   </property>
   <property name="windowIcon">
-   <iconset theme="img/clock.ico"/>
+   <iconset>
+    <normaloff>../img/clock.ico</normaloff>../img/clock.ico</iconset>
   </property>
   <widget class="QWidget" name="centralwidget">
    <property name="styleSheet">
@@ -795,7 +796,7 @@ border : 2px solid black;</string>
  <resources/>
  <connections/>
  <buttongroups>
-  <buttongroup name="buttonGroup2"/>
   <buttongroup name="buttonGroup1"/>
+  <buttongroup name="buttonGroup2"/>
  </buttongroups>
 </ui>
