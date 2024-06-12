@@ -57,7 +57,7 @@ def resource_path(relative_path):
 class AlarmClockDailog(QDialog):
     def __init__(self):
         super(AlarmClockDailog, self).__init__()
-        uic.loadUi(resource_path('ui/dialog.ui'), self)
+        uic.loadUi(resource_path('Clock\styles\dialog.ui'), self)
 
         self.musicbox.addItems(MUSIC.keys())
         self.musicbox.activated.connect(self.music_file)
@@ -88,7 +88,7 @@ class AlarmClockDailog(QDialog):
                 mus (str): Музыка будильника.
                 val (bool): Значение, по умолчанию False.
             """
-            sqlite_connection = sqlite3.connect('db/db.db')
+            sqlite_connection = sqlite3.connect('Clock\db\db.db')
             cursor = sqlite_connection.cursor()
 
             # Добавить в базу данных полученные из диалога параметры нового будильника
@@ -123,12 +123,12 @@ class AlarmClockDailog(QDialog):
 class Window(QMainWindow):
     def __init__(self):
         super(Window, self).__init__()
-        uic.loadUi(resource_path('ui/clock.ui'), self)
+        uic.loadUi(resource_path('Clock\styles\clock.ui'), self)
         # ваш код
         self.alarm_list = []
 
         # Будильник
-        self.connection = sqlite3.connect(resource_path('db/db.db'))
+        self.connection = sqlite3.connect(resource_path('Clock\db\db.db'))
 
         self.add_button.clicked.connect(self.dialog)
         self.del_button.clicked.connect(self.remove)
@@ -307,7 +307,7 @@ class Window(QMainWindow):
         Args:
             filename (str): Путь к файлу с музыкой.
         """
-        media = QtCore.QUrl.fromLocalFile(filename)
+        media = QtCore.QUrl.fromLocalFile(f'Clock/{filename}')
         content = QtMultimedia.QMediaContent(media)
         self.player = QtMultimedia.QMediaPlayer()
         self.player.setMedia(content)
@@ -467,7 +467,7 @@ class Window(QMainWindow):
             self.timer.stop()
             self.load_mp3(MUSIC[self.comboBox.currentText()])
             if MUSIC[self.comboBox.currentText()] == '':
-                self.load_mp3('music/angry_developer.wav')
+                self.load_mp3('Clock/music/angry_developer.wav')
             self.player.play()
             self.comboBox.clear()
             self.comboBox.addItems(MUSIC.keys())
@@ -491,7 +491,7 @@ class Window(QMainWindow):
             else:
                 self.load_mp3(MUSIC[muz])
             if muz == '':
-                self.load_mp3('music/angry_developer.wav')
+                self.load_mp3('Clock/music/angry_developer.wav')
             self.player.play()
 
 
