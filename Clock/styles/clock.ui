@@ -641,7 +641,7 @@ font: 75 26pt &quot;Agency FB&quot;;</string>
              </size>
             </property>
             <property name="styleSheet">
-             <string notr="true">border-image: url(img/clock1.png);
+             <string notr="true">border-image: url(Clock/img/clock1.png);
 border-radius : 70;</string>
             </property>
             <property name="text">
