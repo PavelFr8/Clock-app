@@ -1,5 +1,4 @@
-Clock App
-
+Smart Clock
 
 Описание:
 
